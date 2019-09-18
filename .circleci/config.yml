@@ -7,11 +7,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run Ktlint
-          command: ./gradlew ktlint
+          name: Run Detekt
+          command: ./gradlew detekt
       - run:
-          name: Run Lint
-          command: ./gradlew lintDebug
+          name: Run Ktlint
+          command: ./gradlew ktlintCheck
+      - run:
+          name: Run check
+          command: ./gradlew check --no-daemon --console=plain --continue
       - run:
           name: Run Test
           command: ./gradlew clean test
